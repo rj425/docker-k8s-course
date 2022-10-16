@@ -14,8 +14,14 @@ spec:
     spec:
       containers:
         - name: story
-          image: rj425/kub-data-demo:v1
+          image: rj425/kub-data-demo:v2
           resources: {}
+          env:
+            - name: STORY_FOLDER
+              valueFrom:
+                configMapKeyRef:
+                  name: data-store-env
+                  key: folder
           volumeMounts:
             - mountPath: /app/story
               name: story-volume
